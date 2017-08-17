@@ -27,19 +27,19 @@ namespace Daily_Project_Reverse_Polish_Calculator
             for (int i = 0; i < tokens.Length; ++i)
             {
                 // calls to push() and pop() and do the math here
-
                 if (tokens[i] == "+")
                 {
-                    var a = stack.Pop();
-                    var b = stack.Pop();
-                    var result = a + b;
-                    stack.Push(result);
+                    var a = double.Parse(stack.Pop());
+                    var b = double.Parse(stack.Pop());
+                    var result = b + a;
+                    var realResult = result.ToString();
+                    stack.Push(realResult);
                 }
                 else if (tokens[i] == "-")
                 {
                     var a = double.Parse(stack.Pop());
                     var b = double.Parse(stack.Pop());
-                    var result = a - b;
+                    var result = b - a;
                     var realResult = result.ToString();
                     stack.Push(realResult);
                 }
@@ -47,7 +47,7 @@ namespace Daily_Project_Reverse_Polish_Calculator
                 {
                     var a = double.Parse(stack.Pop());
                     var b = double.Parse(stack.Pop());
-                    var result = a * b;
+                    var result = b * a;
                     var realResult = result.ToString();
                     stack.Push(realResult);
                 }
@@ -55,18 +55,21 @@ namespace Daily_Project_Reverse_Polish_Calculator
                 {
                     var a = double.Parse(stack.Pop());
                     var b = double.Parse(stack.Pop());
-                    var result = a / b;
+                    var result = b / a;
                     var realResult = result.ToString();
                     stack.Push(realResult);
                 }
                 else
                 {
-                    return stack.Push(tokens[i]);
+
+                    stack.Push(tokens[i]);
                 }
             }
 
             // 4. return the result
-            return pop();
+
+            var finalResult = stack.Pop();
+            return double.Parse(finalResult);
         }
     }
 }
